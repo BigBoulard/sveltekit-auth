@@ -1,6 +1,18 @@
 <script>
 	import { signIn, signOut } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
+
+	if ($page.data.session) console.dir($page.data.session);
+
+	// $page.data.session:
+	// 	{
+	//     "user": {
+	//         "name": "Me",
+	//         "email": "me@yopmail.com",
+	//         "image": "https://lh3.googleusercontent.com/a/AE...ndkI3om_5Wdw=s96-c"
+	//     },
+	//     "expires": "2023-01-25T15:29:06.860Z"
+	// }
 </script>
 
 <p>
