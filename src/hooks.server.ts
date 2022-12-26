@@ -13,6 +13,7 @@ import {
 } from '$env/static/private';
 
 export const handle = SvelteKitAuth({
+	secret: AUTH_SECRET,
 	providers: [
 		FacebookProvider({
 			clientId: FACEBOOK_CLIENT_ID,
@@ -24,5 +25,6 @@ export const handle = SvelteKitAuth({
 		})
 		// Google -> set header: Referrer-Policy: no-referrer-when-downgrade
 	],
-	secret: AUTH_SECRET
+	// see https://github.com/nextauthjs/next-auth/discussions/2808#discussioncomment-4486932
+	allowDangerousEmailAccountLinking: true
 });
