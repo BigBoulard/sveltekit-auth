@@ -25,6 +25,21 @@ export const handle = SvelteKitAuth({
 		})
 		// Google -> set header: Referrer-Policy: no-referrer-when-downgrade
 	],
-	// see https://github.com/nextauthjs/next-auth/discussions/2808#discussioncomment-4486932
-	allowDangerousEmailAccountLinking: true
+	// see https://next-auth.js.org/configuration/providers/oauth#allowdangerousemailaccountlinking-option
+	allowDangerousEmailAccountLinking: true,
+	// see https://next-auth.js.org/configuration/callbacks
+	callbacks: {
+		async signIn({ user, account, profile, email, credentials }) {
+			return true;
+		},
+		async redirect({ url, baseUrl }) {
+			return baseUrl;
+		},
+		async session({ session, token, user }) {
+			return session;
+		},
+		async jwt({ token, user, account, profile }) {
+			return token;
+		}
+	}
 });
